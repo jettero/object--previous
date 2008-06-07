@@ -13,7 +13,7 @@ our @EXPORT = qw(previous_object);
 
 sub previous_object {};
 sub import {
-    if( not(@_) or $_[1] !~ m/(:?pure|perl)/ ) {
+    if( @_==1 or $_[1] !~ m/(:?pure|perl)/ ) {
         eval {
             require XSLoader;
             XSLoader::load('Object::PreviousObject', $VERSION);
@@ -43,6 +43,10 @@ sub previous_object_perl {
     #   unshift @_, "borked".
     #
     # The result is that you'd get "borked" instead of the blessed ref of the caller object
+
+    # NOTE: I call this pure-perl vesion The Chromatic Way, but it's really the Devel::StackTrace way see:
+    #  - http://perlmonks.org/?node_id=690713
+    #  - http://perlmonks.org/?node_id=690795
 
     $DB::args[0];
 }

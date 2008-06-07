@@ -1,3 +1,5 @@
+// vi:syntax=c:
+
 #define dopoptosub(plop)	dopoptosub_at(cxstack, (plop))
 
 STATIC I32

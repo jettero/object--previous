@@ -1,0 +1,7 @@
+.git
+MANIFEST.SKIP
+distclean
+makeitfromscratch
+rt
+file.pl
+note.txt
