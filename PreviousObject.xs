@@ -53,14 +53,21 @@ previous_object_xs()
         cx = &ccstack[cxix];
 
         if (CxTYPE(cx) == CXt_SUB || CxTYPE(cx) == CXt_FORMAT) {
-            GV *cvgv = CvGV(ccstack[cxix].blk_sub.cv);
+            GV *cvgv = CvGV(cx->blk_sub.cv);
 
             if (isGV(cvgv)) {
-                SV * const sv = NEWSV(49, 0);
-                gv_efullname3(sv, cvgv, Nullch);
+                const char *fname;
+                const char *stashname = CopSTASHPV(ccstack[cxix+1].blk_oldcop);
+                SV * const subnsv = NEWSV(49, 0);
+
+                gv_efullname3(subnsv, cvgv, Nullch);
+                fname = SvPV(subnsv, PL_na);
+
+                warn("\e[1;34mstashname=%s; fname=%s\e[m", stashname, fname);
+
                 // PUSHs(sv_2mortal(sv));
                 // PUSHs(sv_2mortal(newSViv((I32)cx->blk_sub.hasargs)));
-                RETVAL = sv;
+                RETVAL = subnsv;
             }
         }
     }
