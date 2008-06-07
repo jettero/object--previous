@@ -8,11 +8,13 @@ my $sword = new Sword;
    $sword->cut_body($body);
 
 package Body;
-use Object::PreviousObject qw(pure_perl);
+use Object::PreviousObject;
+
 sub new { return bless {}, "Body" }
-sub hurt_us { my $po = previous_object(); $po->hurt_us }
+sub hurt_us { my $po = previous_object(); warn "\e[35mpo=$po\e[m"; $po->hurt_us }
 
 package Sword;
+
 sub new { return bless {}, "Sword" }
 sub cut_body { my $this = shift; my $target = shift; $target->hurt_us }
 sub hurt_us {
