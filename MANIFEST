@@ -5,3 +5,4 @@ t/01_load.t
 t/02_use_pure_perl.t
 MANIFEST
 pp_caller.txt
+t/03_use_xs.t
