@@ -11,7 +11,7 @@ package Body;
 use Object::PreviousObject;
 
 sub new { return bless {}, "Body" }
-sub hurt_us { my $po = previous_object(); warn "\e[35mpo=$po\e[m"; $po->hurt_us }
+sub hurt_us { my $po = previous_object(); $po->hurt_us }
 
 package Sword;
 

@@ -50,24 +50,29 @@ previous_object_xs()
     }
 
     if( cxix >= 0 ) {
+        char *stashname = CopSTASHPV(ccstack[cxix+1].blk_oldcop);
         cx = &ccstack[cxix];
 
         if (CxTYPE(cx) == CXt_SUB || CxTYPE(cx) == CXt_FORMAT) {
-            GV *cvgv = CvGV(cx->blk_sub.cv);
+            if( cx->blk_sub.hasargs ) {
+                AV *ary = cx->blk_sub.argarray;
+                int off = AvARRAY(ary) - AvALLOC(ary);
+                AV *tmp = newAV();
+                SV **obj;
 
-            if (isGV(cvgv)) {
-                const char *fname;
-                const char *stashname = CopSTASHPV(ccstack[cxix+1].blk_oldcop);
-                SV * const subnsv = NEWSV(49, 0);
+                sv_2mortal((SV*)tmp);
+                AvREAL_off(tmp);
 
-                gv_efullname3(subnsv, cvgv, Nullch);
-                fname = SvPV(subnsv, PL_na);
+                if (AvMAX(tmp) < AvFILLp(ary) + off)
+                    av_extend(tmp, AvFILLp(ary) + off);
 
-                warn("\e[1;34mstashname=%s; fname=%s\e[m", stashname, fname);
+                Copy(AvALLOC(ary), AvARRAY(tmp), AvFILLp(ary) + 1 + off, SV*);
+                AvFILLp(tmp) = AvFILLp(ary) + off;
 
-                // PUSHs(sv_2mortal(sv));
-                // PUSHs(sv_2mortal(newSViv((I32)cx->blk_sub.hasargs)));
-                RETVAL = subnsv;
+                obj = av_fetch(tmp, 0, 0);
+                if( obj )
+                if( sv_isa(*obj, stashname) )
+                    RETVAL = *obj;
             }
         }
     }
