@@ -71,11 +71,13 @@ PP(pp_caller) {
 
     EXTEND(SP, 10);
 
+    // PAUL: my @foo = caller(2)
+    // PAUL: stash == namespace apparently $foo[0]
     if (!stashname) PUSHs(&PL_sv_undef);
     else            PUSHs(sv_2mortal(newSVpv(stashname, 0)));
 
-    PUSHs(sv_2mortal(newSVpv(OutCopFILE(cx->blk_oldcop), 0)));
-    PUSHs(sv_2mortal(newSViv((I32)CopLINE(cx->blk_oldcop))));
+    PUSHs(sv_2mortal(newSVpv(OutCopFILE(cx->blk_oldcop), 0))); // the filename $foo[1]
+    PUSHs(sv_2mortal(newSViv((I32)CopLINE(cx->blk_oldcop)))); // line $foo[2]
 
     if (!MAXARG)
         RETURN;
@@ -84,6 +86,9 @@ PP(pp_caller) {
         GV *cvgv = CvGV(ccstack[cxix].blk_sub.cv);
 
         /* So is ccstack[dbcxix]. */
+
+        // PAUL: this is probably what we're looking for... $foo[3] is the name of the subroutine
+        //       $foo[4] is "hasargs:" whether a new @_ was set up for the frame
 
         if (isGV(cvgv)) {
             SV * const sv = NEWSV(49, 0);
