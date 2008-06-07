@@ -1,3 +1,23 @@
+#define dopoptosub(plop)	dopoptosub_at(cxstack, (plop))
+
+STATIC I32
+S_dopoptosub_at(pTHX_ const PERL_CONTEXT *cxstk, I32 startingblock)
+{
+    I32 i;
+    for (i = startingblock; i >= 0; i--) {
+	register const PERL_CONTEXT * const cx = &cxstk[i];
+	switch (CxTYPE(cx)) {
+	default:
+	    continue;
+	case CXt_EVAL:
+	case CXt_SUB:
+	case CXt_FORMAT:
+	    DEBUG_l( Perl_deb(aTHX_ "(Found sub #%ld)\n", (long)i));
+	    return i;
+	}
+    }
+    return i;
+}
 
 PP(pp_caller) {
     dSP;

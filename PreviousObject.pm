@@ -7,14 +7,45 @@ use Carp;
 require Exporter;
 use AutoLoader;
 use base 'Exporter';
-
-our %EXPORT_TAGS = ( all => [qw( previous_object )]);
-our @EXPORT_OK   = ( @{$EXPORT_TAGS{all}} );
-
 use version; our $VERSION = qv('1.0.0');
 
-require XSLoader;
-XSLoader::load('Object::PreviousObject', $VERSION);
+our @EXPORT = qw(previous_object);
+
+sub previous_object {};
+sub import {
+    if( not(@_) or $_[1] !~ m/(:?pure|perl)/ ) {
+        eval {
+            require XSLoader;
+            XSLoader::load('Object::PreviousObject', $VERSION);
+        };
+
+        if( $@ ) {
+            warn "couldn't load _xs version: $@";
+            *previous_object = *previous_object_perl;
+
+        } else {
+            *previous_object = *previous_object_xs;
+        }
+
+    } else {
+        splice @_, 1, 1;
+        *previous_object = *previous_object_perl;
+    }
+
+    goto &Exporter::import;
+}
+
+sub previous_object_perl {
+    my @foo = do { package DB; @DB::args=(); caller(2) };
+
+    # NOTE: this doesn't work if, in that previous object, you were to do this:
+    #
+    #   unshift @_, "borked".
+    #
+    # The result is that you'd get "borked" instead of the blessed ref of the caller object
+
+    $DB::args[0];
+}
 
 1;
 
