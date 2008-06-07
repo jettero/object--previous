@@ -62,6 +62,8 @@ Object::PreviousObject - find the instance of the object that called your functi
 =head1 SYNOPSIS
 
     package Human;
+    use Object::PreviousObject;
+
     sub hurt_us {
         my $body = shift;
            $body->{hit_points} -= shift;
@@ -104,6 +106,6 @@ Copyright (c) 2007 Paul Miller -- LGPL [attached]
 
 =head1 SEE ALSO
 
-perl(1)
+perl(1), Devel::Stacktrace, perlmonks.org
 
 =cut
