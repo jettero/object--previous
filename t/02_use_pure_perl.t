@@ -8,7 +8,7 @@ my $sword = new Sword;
    $sword->cut_body($body);
 
 package Body;
-use Object::PreviousObject qw(pure_perl);
+use Object::Previous qw(pure_perl);
 sub new { return bless {}, "Body" }
 sub hurt_us { my $po = previous_object(); $po->hurt_us }
 

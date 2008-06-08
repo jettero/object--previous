@@ -22,7 +22,7 @@ I32 my_dopoptosub(const PERL_CONTEXT *cxstk, I32 startingblock) {
     return i;
 }
 
-MODULE = Object::PreviousObject PACKAGE = Object::PreviousObject
+MODULE = Object::Previous PACKAGE = Object::Previous
 
 SV*
 previous_object_xs()

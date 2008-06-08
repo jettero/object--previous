@@ -1,6 +1,6 @@
 Makefile.PL
-PreviousObject.pm
-PreviousObject.xs
+Previous.pm
+Previous.xs
 t/01_load.t
 t/02_use_pure_perl.t
 MANIFEST

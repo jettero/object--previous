@@ -1,4 +1,4 @@
-package Object::PreviousObject;
+package Object::Previous;
 
 use strict;
 use warnings;
@@ -16,7 +16,7 @@ sub import {
     if( @_==1 or $_[1] !~ m/(:?pure|perl)/ ) {
         eval {
             require XSLoader;
-            XSLoader::load('Object::PreviousObject', $VERSION);
+            XSLoader::load('Object::Previous', $VERSION);
         };
 
         if( $@ ) {
@@ -57,12 +57,12 @@ __END__
 
 =head1 NAME
 
-Object::PreviousObject - find the instance of the object that called your function
+Object::Previous - find the instance of the object that called your function
 
 =head1 SYNOPSIS
 
     package Human;
-    use Object::PreviousObject;
+    use Object::Previous;
 
     sub hurt_us {
         my $body = shift;
