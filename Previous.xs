@@ -84,7 +84,7 @@ previous_object_xs()
 
                 if( obj = av_fetch(tmp, 0, 0) )
                     if( sv_isa(*obj, stashname) )
-                        RETVAL = *obj;
+                        RETVAL = SvREFCNT_inc(*obj);
             }
         }
     }
