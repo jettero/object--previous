@@ -13,7 +13,7 @@ our @EXPORT = qw(previous_object);
 
 sub previous_object {};
 sub import {
-    if( @_==1 or $_[1] !~ m/(:?pure|perl)/ ) {
+    if( @_==1 or $_[1] !~ m/(:?pure|perl|pl)/ ) {
         eval {
             require XSLoader;
             XSLoader::load('Object::Previous', $VERSION);
@@ -21,7 +21,7 @@ sub import {
 
         if( $@ ) {
             warn "couldn't load _xs version: $@";
-            *previous_object = *previous_object_perl;
+            *previous_object = *previous_object_pl;
 
         } else {
             *previous_object = *previous_object_xs;
@@ -29,13 +29,13 @@ sub import {
 
     } else {
         splice @_, 1, 1;
-        *previous_object = *previous_object_perl;
+        *previous_object = *previous_object_pl;
     }
 
     goto &Exporter::import;
 }
 
-sub previous_object_perl {
+sub previous_object_pl {
     my @foo = do { package DB; @DB::args=(); caller(2) };
 
     # NOTE: this doesn't work if, in that previous object, you were to do this:
