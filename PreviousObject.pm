@@ -92,19 +92,42 @@ Object::PreviousObject - find the instance of the object that called your functi
         }
     }
 
-=head1 AUTHOR
+=head1 previous_object()
+
+previous_object() either returns the blessed ref of the caller or
+undef if it is not possible to find it.
+
+=head1 CAVEATS
+
+If you tinker with the @_ in the caller object, previous_object()
+won't work.  Curiously, certain ways of tinkinkering don't hurt
+and others do.
+
+    my $self = shift; # doesn't hurt previous_object()
+    shift while @_;   # doesn't hurt previous_object()
+    splice @_, 0, 30; # doesn't hurt previous_object()
+
+    unshift @_, "borked"; # breaks previous_object();
+    @_ = ();              # breaks previous_object();
+
+=head1 AUTHOR(S)
+
+Most of the code was ripped from Perl and from perlmonks.org, but
+it was glued together by me.
 
 Paul Miller <paul@cpan.org>
 
-I am using this software in my own projects...  If you find bugs, please
-please please let me know. :) Actually, let me know if you find it handy at
-all.  Half the fun of releasing this stuff is knowing that people use it.
+I am using this software in my own projects...  If you find bugs,
+please please please let me know. :) Actually, let me know if you
+find it handy at all.  Half the fun of releasing this stuff is
+knowing that people use it.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2007 Paul Miller -- LGPL [attached] where possible, however,
-since much of this code was ripped from Perl itself, it probably has to follow
-the perl license?  My intention is to use the LGPL if possible.
+Copyright (c) 2007 Paul Miller -- LGPL [attached] where possible,
+however, since much of this code was ripped from Perl itself, it
+probably has to follow the perl license?  My intention is to use
+the LGPL if possible.
 
 =head1 SEE ALSO
 
