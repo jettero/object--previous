@@ -64,6 +64,7 @@ Object::Previous - find the instance of the object that called your function
     package Human;
     use Object::Previous;
 
+    sub new { bless {hit_points=>(7+int rand 6)} }
     sub hurt_us {
         my $body = shift;
            $body->{hit_points} -= shift;
@@ -77,6 +78,7 @@ Object::Previous - find the instance of the object that called your function
     }
 
     package Sword;
+    sub new { bless {hit_points=>2} }
     sub hurt_human {
         my $sword = shift;
         my $target = shift;
