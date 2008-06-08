@@ -102,7 +102,9 @@ all.  Half the fun of releasing this stuff is knowing that people use it.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2007 Paul Miller -- LGPL [attached]
+Copyright (c) 2007 Paul Miller -- LGPL [attached] where possible, however,
+since much of this code was ripped from Perl itself, it probably has to follow
+the perl license?  My intention is to use the LGPL if possible.
 
 =head1 SEE ALSO
 

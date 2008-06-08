@@ -2,6 +2,10 @@
 #include "perl.h"
 #include "XSUB.h"
 
+// Almost all the code from this .xs is ripped from perl5.8.8/pp_ctl.c
+// It's slimmed down a bit, but that's where it all comes from.
+// -Paul
+
 I32 my_dopoptosub(const PERL_CONTEXT *cxstk, I32 startingblock) {
     I32 i;
     for(i=startingblock; i>=0; i--) {
@@ -69,10 +73,18 @@ previous_object_xs()
                 Copy(AvALLOC(ary), AvARRAY(tmp), AvFILLp(ary) + 1 + off, SV*);
                 AvFILLp(tmp) = AvFILLp(ary) + off;
 
-                obj = av_fetch(tmp, 0, 0);
-                if( obj )
-                if( sv_isa(*obj, stashname) )
-                    RETVAL = *obj;
+                // TODO: I literally don't understand why we can't just
+                // av_fetch(ary,0,0) and return that...  Sadly, the av_len(ary)
+                // is -1, and you have to Copy() it to the tmp AV* in order to
+                // get the real size of 1.  The offset is usually 2 I think...
+                // perhaps that has something to do with it?  Beyond my skill
+                // level...
+
+                // warn("\e[31ml1=%d l2=%d off=%d\e[m", av_len(ary), av_len(tmp), off);
+
+                if( obj = av_fetch(tmp, 0, 0) )
+                    if( sv_isa(*obj, stashname) )
+                        RETVAL = *obj;
             }
         }
     }
