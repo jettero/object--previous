@@ -9,3 +9,4 @@ t/03_use_xs.t
 Changes
 benchmark.pl
 t/04_xs_too_mortal.t
+README
