@@ -73,7 +73,7 @@ Object::Previous - find the instance of the object that called your function
             # every once in a while, damaging bodies hurts the sword:
 
             my $sword = previous_object();
-               $sword->hurt_us(1+int rand4);
+               $sword->hurt_us(1+int rand 4);
         }
     }
 
