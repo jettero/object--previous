@@ -8,3 +8,5 @@ pp_caller.txt
 t/03_use_xs.t
 Changes
 lgpl-2.1.txt.gz
+benchmark.pl
+t/04_xs_too_mortal.t
