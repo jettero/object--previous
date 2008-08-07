@@ -5,10 +5,10 @@ use warnings;
 use Carp;
 
 require Exporter;
-use AutoLoader;
 use base 'Exporter';
-use version; our $VERSION = qv('1.0.0');
+use version;
 
+our $VERSION = 1.1;
 our @EXPORT = qw(previous_object);
 
 sub previous_object {};
