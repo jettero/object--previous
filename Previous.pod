@@ -39,12 +39,12 @@ Object::Previous - find the instance of the object that called your function
 
 =head1 previous_object
 
-L</previous_object>() either returns the blessed ref of the caller or C<undef>
+L</previous_object> either returns the blessed ref of the caller or C<undef>
 if it is not possible to find it.
 
 =head1 CAVEATS
 
-If you tinker with the C<@_> in the caller object, L</previous_object>() won't
+If you tinker with the C<@_> in the caller object, L</previous_object> won't
 work.  Curiously, certain ways of tinkering don't hurt and others do.
 
     my $self = shift; # doesn't hurt previous_object()
