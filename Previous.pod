@@ -54,11 +54,11 @@ work.  Curiously, certain ways of tinkering don't hurt and others do.
     unshift @_, "borked"; # breaks previous_object();
     @_ = ();              # breaks previous_object();
 
-Another caveat is that almost everyone things this is a really bad idea and/or
+Another caveat is that almost everyone thinks this is a really bad idea and/or
 bad practice.  
 
 The only place I've ever seen it actually used in practice is for security in
-MudOS (LPC, not perl).  LPC has a native previous_object function.  It's used to
+MudOS (LPC, not Perl).  LPC has a native previous_object function.  It's used to
 make sure calling objects are really admin-shells or really the mob they're
 supposed to be -- anywhere you wouldn't want someone to just be able to pass in
 an appropriate object to subvert the security.
