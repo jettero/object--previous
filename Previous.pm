@@ -7,7 +7,7 @@ use Carp;
 require Exporter;
 use base 'Exporter';
 
-our $VERSION = 1.1005;
+our $VERSION = 1.1007;
 our @EXPORT = qw(previous_object);
 
 sub previous_object {};
