@@ -74,4 +74,7 @@ Licensed under the same terms as Perl itself.
 
 =head1 SEE ALSO
 
-perl(1), L<Devel::Stacktrace>, L<perlmonks|http://perlmonks.org/>, cop.h, pp_ctl.c
+perl(1), L<Devel::Stacktrace>,
+L<perlmonks node 690713|http://perlmonks.org/?node_id=690713>,
+L<perlmonks node 690795|http://perlmonks.org/?node_id=690795>,
+cop.h, pp_ctl.c
