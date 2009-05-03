@@ -1,9 +1,3 @@
-.git
+^.git
 MANIFEST.SKIP
-distclean
-makeitfromscratch
-rt
-file.pl
-note.txt
-Distro
-installhere
+^.pm-desc.html
