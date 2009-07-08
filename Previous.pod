@@ -68,7 +68,7 @@ an appropriate object to subvert the security.
 Most of the code was ripped from Perl and from L<http://perlmonks.org/>, but it
 was glued together by me.
 
-Paul Miller C<< <paul@cpan.org> >>
+Paul Miller C<< <jettero@cpan.org> >>
 
 I am using this software in my own projects...  If you find bugs, please please
 please let me know. :) Actually, let me know if you find it handy at all.  Half
