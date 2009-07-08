@@ -65,15 +65,14 @@ an appropriate object to subvert the security.
 
 =head1 AUTHOR(S)
 
-Most of the code was ripped from Perl and from
-L<perlmonks|http://perlmonks.org>, but it was glued together by me.
+Most of the code was ripped from Perl and from L<http://perlmonks.org/>, but it
+was glued together by me.
 
 Paul Miller C<< <paul@cpan.org> >>
 
-I am using this software in my own projects...  If you find bugs,
-please please please let me know. :) Actually, let me know if you
-find it handy at all.  Half the fun of releasing this stuff is
-knowing that people use it.
+I am using this software in my own projects...  If you find bugs, please please
+please let me know. :) Actually, let me know if you find it handy at all.  Half
+the fun of releasing this stuff is knowing that people use it.
 
 =head1 COPYRIGHT
 
@@ -83,7 +82,5 @@ Licensed under the same terms as Perl itself.
 
 =head1 SEE ALSO
 
-perl(1), L<Devel::Stacktrace>,
-L<perlmonks node 690713|http://perlmonks.org/?node_id=690713>,
-L<perlmonks node 690795|http://perlmonks.org/?node_id=690795>,
-cop.h, pp_ctl.c
+perl(1), L<Devel::Stacktrace>, L<http://perlmonks.org/?node_id=690713>,
+L<http://perlmonks.org/?node_id=690795>, cop.h, pp_ctl.c
