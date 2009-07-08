@@ -13,4 +13,3 @@ t/03_use_xs.t
 t/04_xs_too_mortal.t
 t/critic.t
 t/pod.t
-t/pod_coverage.t

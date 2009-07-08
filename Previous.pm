@@ -7,8 +7,8 @@ use Carp;
 require Exporter;
 use base 'Exporter';
 
-our $VERSION = 1.1007;
-our @EXPORT = qw(previous_object);
+our $VERSION = "1.1010";
+our @EXPORT = qw(previous_object); ## no critic
 
 sub previous_object {};
 sub import {
@@ -35,7 +35,7 @@ sub import {
 }
 
 sub previous_object_pl {
-    my @foo = do { package DB; @DB::args=(); caller(2) };
+    my @foo = do { package DB; @DB::args=(); caller(2) }; ## no critic
 
     # NOTE: this doesn't work if, in that previous object, you were to do this:
     #
@@ -47,7 +47,7 @@ sub previous_object_pl {
     #  - http://perlmonks.org/?node_id=690713
     #  - http://perlmonks.org/?node_id=690795
 
-    $DB::args[0];
+    return $DB::args[0];
 }
 
-"true";
+1;
