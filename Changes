@@ -1,3 +1,7 @@
+1.1012: Fri Apr 02 2010
+   - Slaven_Rezic via RT, "Previous.xs:61: error: 'const struct
+     block_sub' has no member named 'hasargs'"
+
 1.1011: Wed Jul 08 2009
    - worst bug ever: I'm jettero@cpan.org, not paul@cpan.org
 
