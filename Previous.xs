@@ -2,6 +2,10 @@
 #include "perl.h"
 #include "XSUB.h"
 
+#ifndef CxHASARGS
+ #define CxHASARGS(cx) (cx->blk_sub.hasargs)
+#endif
+
 // Almost all the code from this .xs is ripped from perl5.8.8/pp_ctl.c
 // It's slimmed down a bit, but that's where it all comes from.
 // -Paul
@@ -58,7 +62,7 @@ previous_object_xs()
         cx = &ccstack[cxix];
 
         if (CxTYPE(cx) == CXt_SUB || CxTYPE(cx) == CXt_FORMAT) {
-            if( cx->blk_sub.hasargs ) {
+            if( CxHASARGS(cx) ) {
                 AV *ary = cx->blk_sub.argarray;
                 int off = AvARRAY(ary) - AvALLOC(ary);
                 AV *tmp = newAV();
