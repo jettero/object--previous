@@ -76,7 +76,7 @@ the fun of releasing this stuff is knowing that people use it.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2007-2009 Paul Miller
+Copyright (c) 2007-2010 Paul Miller
 
 Licensed under the same terms as Perl itself.
 
